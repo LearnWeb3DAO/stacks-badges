@@ -1,5 +1,5 @@
 import { Cl } from "@stacks/transactions";
-import { beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 // `simnet` is a "simulation network" - a local, testing Stacks node for running our tests
 const accounts = simnet.getAccounts();
