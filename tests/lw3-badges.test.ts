@@ -123,4 +123,23 @@ describe("LW3 Badges", () => {
       Cl.some(Cl.stringAscii("https://learnweb3.io/api/tokens/stx/1"))
     );
   });
+
+  it("mints non transferable tokens", () => {
+    const tokenId = simnet.callPublicFn(
+      "lw3-badges",
+      "mint",
+      [Cl.principal(address1)],
+      deployer
+    );
+    expect(tokenId.result).toBeOk(Cl.uint(1));
+
+    const transfer = simnet.callPublicFn(
+      "lw3-badges",
+      "transfer",
+      [Cl.uint(1), Cl.principal(address1), Cl.principal(address2)],
+      address1
+    );
+
+    expect(transfer.result).toBeErr(Cl.uint(102));
+  });
 });
